@@ -60,5 +60,5 @@ All UI components consume domain state exclusively through `useBooks()` and `Boo
 ## Deployment & License
 
 - **Deployment:** Ready for static hosting on Netlify (`netlify.toml` and `public/_redirects` included for client-side routing).
-- **Author:** Mehmet Ali Bunsuz ([@alibnsz](https://github.com/alibnsz))
+- **Author:** Mehmet Ali Bunsuz
 - **License:** MIT
