@@ -1,4 +1,6 @@
 import { describe, expect, it, beforeEach } from 'vitest';
+import { getBookCoverDesign } from '../src/data/coverDesigns';
+import { SEED_BOOKS } from '../src/data/seedBooks';
 import { LocalStorageBookRepository } from '../src/services/localStorageBook.repository';
 import { filterAndSortBooks } from '../src/utils/filterAndSort';
 import { validateBookInput } from '../src/utils/validators';
@@ -155,5 +157,27 @@ describe('filterAndSortBooks & booksReducer', () => {
     });
     expect(filteredBorrowed).toHaveLength(1);
     expect(filteredBorrowed[0].id).toBe('2');
+  });
+});
+
+describe('SEED_BOOKS catalog & cover uniqueness', () => {
+  it('provides at least 50 valid books with completely unique cover designs', () => {
+    expect(SEED_BOOKS.length).toBeGreaterThanOrEqual(50);
+
+    const uniqueIds = new Set<string>();
+    const uniqueCoverSignatures = new Set<string>();
+
+    for (const book of SEED_BOOKS) {
+      expect(uniqueIds.has(book.id)).toBe(false);
+      uniqueIds.add(book.id);
+
+      const validation = validateBookInput(book);
+      expect(validation.isValid).toBe(true);
+
+      const cover = getBookCoverDesign(book);
+      const signature = `${cover.layout}|${cover.motif}|${cover.bg}`;
+      expect(uniqueCoverSignatures.has(signature)).toBe(false);
+      uniqueCoverSignatures.add(signature);
+    }
   });
 });
