@@ -84,95 +84,107 @@ export function LibraryPage() {
   // Always fall back to SEED_BOOKS before storage hydrates so the hero never remounts or jumps twice!
   const safeBooks = books.length > 0 ? books : SEED_BOOKS;
 
-  // 8 Perimeter Floating 3D Hero Books with inline coordinates (never overlaps center headline)
+  // 10 Perimeter Floating 3D Hero Books (5 left, 5 right) positioned cleanly outside the center headline
   const floatingBooks = [
     {
-      book: safeBooks.find((b) => b.id.includes('b206')) ?? safeBooks[0],
-      variant: 'float-tl' as const,
-      positionStyle: { top: '5%', left: '12%' },
+      book: safeBooks.find((b) => b.id === 'b206-kafandaki-tuhaflik') ?? safeBooks[0],
+      positionStyle: { top: '4%', left: '13.5%' },
       tiltClass: 'book-3d-right',
-      sizeClass: 'h-[146px] w-[104px]',
+      sizeClass: 'h-[134px] w-[94px]',
       parallaxX: parallaxFastX,
       parallaxY: parallaxFastY,
       delay: 0.04,
       spinFrom: -180,
     },
     {
-      book: safeBooks.find((b) => b.id.includes('b207')) ?? safeBooks[1 % safeBooks.length],
-      variant: 'float-ml' as const,
-      positionStyle: { top: '37%', left: '2.5%' },
+      book: safeBooks.find((b) => b.id === 'b207-beden-kayit-tutar') ?? safeBooks[1 % safeBooks.length],
+      positionStyle: { top: '16%', left: '1.5%' },
       tiltClass: 'book-3d-right',
-      sizeClass: 'h-[140px] w-[98px]',
+      sizeClass: 'h-[126px] w-[88px]',
       parallaxX: parallaxSlowX,
       parallaxY: parallaxSlowY,
-      delay: 0.1,
+      delay: 0.09,
       spinFrom: 180,
     },
     {
-      book: safeBooks.find((b) => b.id.includes('b208')) ?? safeBooks[2 % safeBooks.length],
-      variant: 'float-bl' as const,
-      positionStyle: { bottom: '6%', left: '17%' },
+      book: safeBooks.find((b) => b.id === 'b212-kurk-mantolu-madonna') ?? safeBooks[2 % safeBooks.length],
+      positionStyle: { top: '43%', left: '2.5%' },
       tiltClass: 'book-3d-right',
-      sizeClass: 'h-[146px] w-[104px]',
+      sizeClass: 'h-[136px] w-[96px]',
       parallaxX: parallaxFastX,
       parallaxY: parallaxSlowY,
-      delay: 0.16,
+      delay: 0.14,
       spinFrom: -180,
     },
     {
-      book: safeBooks.find((b) => b.id.includes('b212')) ?? safeBooks[6 % safeBooks.length],
-      variant: 'card-2' as const,
-      positionStyle: { bottom: '8%', left: '3.5%' },
+      book: safeBooks.find((b) => b.id === 'b208-atlas-vazgecti') ?? safeBooks[3 % safeBooks.length],
+      positionStyle: { bottom: '5%', left: '3%' },
       tiltClass: 'book-3d-right',
-      sizeClass: 'h-[124px] w-[88px]',
+      sizeClass: 'h-[124px] w-[86px]',
       parallaxX: parallaxSlowX,
       parallaxY: parallaxFastY,
-      delay: 0.22,
-      spinFrom: 180,
-    },
-    {
-      book: safeBooks.find((b) => b.id.includes('b209')) ?? safeBooks[3 % safeBooks.length],
-      variant: 'float-tr' as const,
-      positionStyle: { top: '6%', right: '15%' },
-      tiltClass: 'book-3d-left',
-      sizeClass: 'h-[128px] w-[90px]',
-      parallaxX: parallaxSlowX,
-      parallaxY: parallaxFastY,
-      delay: 0.07,
-      spinFrom: 180,
-    },
-    {
-      book: safeBooks.find((b) => b.id.includes('b210')) ?? safeBooks[4 % safeBooks.length],
-      variant: 'float-mr' as const,
-      positionStyle: { top: '18%', right: '2.5%' },
-      tiltClass: 'book-3d-left',
-      sizeClass: 'h-[148px] w-[106px]',
-      parallaxX: parallaxFastX,
-      parallaxY: parallaxFastY,
-      delay: 0.13,
-      spinFrom: -180,
-    },
-    {
-      book: safeBooks.find((b) => b.id.includes('b211')) ?? safeBooks[5 % safeBooks.length],
-      variant: 'float-br' as const,
-      positionStyle: { bottom: '6%', right: '15%' },
-      tiltClass: 'book-3d-left',
-      sizeClass: 'h-[144px] w-[102px]',
-      parallaxX: parallaxSlowX,
-      parallaxY: parallaxSlowY,
       delay: 0.19,
       spinFrom: 180,
     },
     {
-      book: safeBooks.find((b) => b.id.includes('b214')) ?? safeBooks[8 % safeBooks.length],
-      variant: 'card-4' as const,
-      positionStyle: { bottom: '12%', right: '3%' },
+      book: safeBooks.find((b) => b.id === 'b229-kucuk-prens') ?? safeBooks[4 % safeBooks.length],
+      positionStyle: { bottom: '5%', left: '14%' },
+      tiltClass: 'book-3d-right',
+      sizeClass: 'h-[138px] w-[98px]',
+      parallaxX: parallaxFastX,
+      parallaxY: parallaxFastY,
+      delay: 0.24,
+      spinFrom: -180,
+    },
+    {
+      book: safeBooks.find((b) => b.id === 'b209-hygge') ?? safeBooks[5 % safeBooks.length],
+      positionStyle: { top: '4%', right: '13.5%' },
       tiltClass: 'book-3d-left',
-      sizeClass: 'h-[126px] w-[88px]',
+      sizeClass: 'h-[130px] w-[92px]',
+      parallaxX: parallaxSlowX,
+      parallaxY: parallaxFastY,
+      delay: 0.06,
+      spinFrom: 180,
+    },
+    {
+      book: safeBooks.find((b) => b.id === 'b210-avrupa-kapisi') ?? safeBooks[6 % safeBooks.length],
+      positionStyle: { top: '16%', right: '1.5%' },
+      tiltClass: 'book-3d-left',
+      sizeClass: 'h-[138px] w-[98px]',
+      parallaxX: parallaxFastX,
+      parallaxY: parallaxFastY,
+      delay: 0.11,
+      spinFrom: -180,
+    },
+    {
+      book: safeBooks.find((b) => b.id === 'b217-dune-col-gezegeni') ?? safeBooks[7 % safeBooks.length],
+      positionStyle: { top: '44%', right: '2.5%' },
+      tiltClass: 'book-3d-left',
+      sizeClass: 'h-[132px] w-[92px]',
+      parallaxX: parallaxSlowX,
+      parallaxY: parallaxSlowY,
+      delay: 0.16,
+      spinFrom: 180,
+    },
+    {
+      book: safeBooks.find((b) => b.id === 'b211-dil-ve-kilic') ?? safeBooks[8 % safeBooks.length],
+      positionStyle: { bottom: '5%', right: '3%' },
+      tiltClass: 'book-3d-left',
+      sizeClass: 'h-[124px] w-[86px]',
       parallaxX: parallaxFastX,
       parallaxY: parallaxSlowY,
-      delay: 0.25,
+      delay: 0.21,
       spinFrom: -180,
+    },
+    {
+      book: safeBooks.find((b) => b.id === 'b237-kozmos') ?? safeBooks[9 % safeBooks.length],
+      positionStyle: { bottom: '5%', right: '14%' },
+      tiltClass: 'book-3d-left',
+      sizeClass: 'h-[136px] w-[96px]',
+      parallaxX: parallaxSlowX,
+      parallaxY: parallaxFastY,
+      delay: 0.26,
+      spinFrom: 180,
     },
   ];
 
@@ -199,15 +211,19 @@ export function LibraryPage() {
     setDeletingBook(null);
   };
 
-  const sourceList = books.length > 0 ? filteredBooks : SEED_BOOKS;
+  const sourceList = status === 'ready' ? filteredBooks : SEED_BOOKS;
 
   const topShowcaseBooks = hasActiveFilters
     ? sourceList
-    : sourceList.slice(0, 10);
+    : sourceList.slice(0, 15);
 
   const secondaryShowcaseBooks = hasActiveFilters
     ? []
-    : sourceList.slice(10, 20);
+    : sourceList.slice(15, 30);
+
+  const tertiaryShowcaseBooks = hasActiveFilters
+    ? []
+    : sourceList.slice(30);
 
   return (
     <AppLayout onQuickAdd={() => setIsAddModalOpen(true)}>
@@ -216,13 +232,13 @@ export function LibraryPage() {
         onMouseMove={handleHeroMouseMove}
         onMouseLeave={handleHeroMouseLeave}
         aria-label="Kütüphane Vitrin ve Arama"
-        className="relative mx-auto flex min-h-[590px] w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-6 py-16 sm:min-h-[640px]"
+        className="relative mx-auto flex min-h-[600px] w-full max-w-[1440px] flex-col items-center justify-center overflow-hidden px-6 py-16 sm:min-h-[650px]"
       >
-        {/* 8 Perimeter Floating 3D Books entering with a 3D spinning animation */}
+        {/* 10 Perimeter Floating 3D Books entering with a 3D spinning animation */}
         <div className="pointer-events-none absolute inset-0 hidden lg:block">
           {floatingBooks.map((item, idx) => (
             <motion.div
-              key={item.variant + idx}
+              key={item.book.id}
               style={{
                 ...item.positionStyle,
                 x: item.parallaxX,
@@ -265,7 +281,7 @@ export function LibraryPage() {
                   className="book-3d-wrapper cursor-pointer focus:outline-none"
                 >
                   <div className={`${item.sizeClass} ${item.tiltClass}`}>
-                    <EditorialBookCover book={item.book} variant={item.variant} />
+                    <EditorialBookCover book={item.book} />
                   </div>
                 </motion.button>
               </motion.div>
@@ -275,7 +291,7 @@ export function LibraryPage() {
 
         {/* Center Staggered Line-Mask Editorial Headline + Single Smooth Search Input */}
         <div className="relative z-20 mx-auto max-w-3xl text-center">
-          <h1 className="font-editorial text-5xl font-normal leading-[1.04] tracking-tight text-[#111111] sm:text-6xl md:text-[72px]">
+          <h1 className="font-editorial text-4xl font-normal leading-[1.04] tracking-tight text-[#111111] sm:text-5xl lg:text-[56px] xl:text-[68px]">
             {HEADLINE_LINES.map((line, idx) => (
               <span key={line} className="block overflow-hidden pb-1">
                 <motion.span
@@ -332,8 +348,9 @@ export function LibraryPage() {
         </div>
       </section>
 
-      {/* 2. SECTION DIVIDER & 10 SHOWCASE BOOKS ("Yeni Çıkanlar") */}
+      {/* 2. SECTION DIVIDER & 15 SHOWCASE BOOKS ("Yeni Çıkanlar") */}
       <section
+        id="vitrin-baslangic"
         aria-label="Yeni Çıkanlar Vitrini"
         className="mx-auto w-full max-w-7xl px-6 pt-4 pb-20 sm:px-12"
       >
@@ -343,7 +360,7 @@ export function LibraryPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-12 flex items-center justify-center gap-7"
+          className="mb-10 flex items-center justify-center gap-7"
         >
           <motion.div
             initial={{ scaleX: 0 }}
@@ -358,7 +375,9 @@ export function LibraryPage() {
 
           <h2 className="font-editorial shrink-0 text-3xl font-normal tracking-tight text-[#111111] sm:text-[38px]">
             {hasActiveFilters
-              ? `Arama Sonuçları (${topShowcaseBooks.length})`
+              ? filters.category !== 'all' && !filters.query
+                ? `${filters.category.charAt(0).toUpperCase() + filters.category.slice(1)} (${topShowcaseBooks.length})`
+                : `Arama Sonuçları (${topShowcaseBooks.length})`
               : 'Yeni Çıkanlar'}
           </h2>
 
@@ -373,6 +392,19 @@ export function LibraryPage() {
             <span className="absolute -right-1 -top-[3px] h-1.5 w-1.5 rotate-45 bg-[#111111]" />
           </motion.div>
         </motion.div>
+
+        {hasActiveFilters && (
+          <div className="mb-8 flex justify-center">
+            <button
+              type="button"
+              onClick={resetFilters}
+              className="inline-flex items-center gap-2 rounded-full border border-[#111111] bg-white px-4 py-1.5 text-xs font-medium text-[#111111] transition-colors hover:bg-[#111111] hover:text-white cursor-pointer"
+            >
+              <X className="h-3.5 w-3.5" />
+              <span>Tüm Kataloğu Göster ({safeBooks.length})</span>
+            </button>
+          </div>
+        )}
 
         { status === 'error' ? (
           <div className="my-8 mx-auto max-w-md rounded-2xl border border-neutral-200 p-8 text-center">
@@ -461,7 +493,12 @@ export function LibraryPage() {
                     delay: idx * 0.05,
                     ease: [0.16, 1, 0.3, 1],
                   }}
-                  onClick={() => updateFilter('category', cat)}
+                  onClick={() => {
+                    updateFilter('category', cat);
+                    document
+                      .getElementById('vitrin-baslangic')
+                      ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }}
                   className="group flex items-center gap-3 rounded-full border border-neutral-300 bg-white px-6 py-3 text-xs font-medium capitalize text-[#111111] transition-all duration-300 hover:border-[#111111] hover:bg-[#111111] hover:text-white cursor-pointer"
                 >
                   <span>{cat}</span>
@@ -475,7 +512,7 @@ export function LibraryPage() {
         </section>
       )}
 
-      {/* 4. SECONDARY SHOWCASE ROW ("Kültür, Felsefe ve Klasikler" - 10 more books!) */}
+      {/* 4. SECONDARY SHOWCASE ROW ("Kültür, Felsefe ve Klasikler" - 15 more books) */}
       {secondaryShowcaseBooks.length > 0 && (
         <section
           aria-label="Editörün Seçkisi"
@@ -522,7 +559,54 @@ export function LibraryPage() {
         </section>
       )}
 
-      {/* 5. MINIMALIST LIVE STATS & LENDING OVERVIEW BANNER */}
+      {/* 5. TERTIARY SHOWCASE ROW ("Bilim, Psikoloji ve Çağdaş Seçki" - 20+ more books) */}
+      {tertiaryShowcaseBooks.length > 0 && (
+        <section
+          aria-label="Bilim ve Çağdaş Kütüphane"
+          className="mx-auto w-full max-w-7xl border-t border-neutral-200 px-6 py-20 sm:px-12"
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-12 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end"
+          >
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-400">
+                GENİŞ ARŞİV SEÇKİSİ
+              </p>
+              <h2 className="font-editorial mt-2 text-4xl font-normal tracking-tight text-[#111111] sm:text-5xl">
+                Bilim, Psikoloji ve Modern Dünya
+              </h2>
+            </div>
+
+            <Link
+              to="/populer"
+              className="group inline-flex items-center gap-2 text-xs font-medium text-[#111111] hover:opacity-70"
+            >
+              <span>Popüler Sıralamayı Gör</span>
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </motion.div>
+
+          <div className="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+            {tertiaryShowcaseBooks.map((book, idx) => (
+              <BookCard
+                key={book.id}
+                book={book}
+                index={idx + 2}
+                onEdit={(b) => setEditingBook(b)}
+                onDelete={(b) => setDeletingBook(b)}
+                onLend={(b) => setLendingBook(b)}
+                onReturn={(b) => void returnBook(b.id)}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* 6. MINIMALIST LIVE STATS & LENDING OVERVIEW BANNER */}
       <section
         aria-label="Kütüphane Özeti"
         className="mx-auto w-full max-w-7xl border-t border-neutral-200 px-6 pt-20 pb-8 sm:px-12"
@@ -539,7 +623,7 @@ export function LibraryPage() {
               TOPLAM KATALOG
             </span>
             <p className="font-editorial mt-4 text-6xl font-normal text-[#111111]">
-              {stats.total || SEED_BOOKS.length}
+              {books.length > 0 ? stats.total : SEED_BOOKS.length}
             </p>
             <span className="mt-2 text-xs text-neutral-500">
               Kayıtlı dijital ve basılı eser
@@ -551,7 +635,9 @@ export function LibraryPage() {
               RAFTA MEVCUT
             </span>
             <p className="font-editorial mt-4 text-6xl font-normal text-[#111111]">
-              {stats.available || SEED_BOOKS.length - 3}
+              {books.length > 0
+                ? stats.available
+                : SEED_BOOKS.filter((b) => b.status === 'available').length}
             </p>
             <span className="mt-2 text-xs text-neutral-500">
               Hemen okunabilir ve ödünç verilebilir
@@ -563,7 +649,9 @@ export function LibraryPage() {
               ÖDÜNÇ VERİLEN
             </span>
             <p className="font-editorial mt-4 text-6xl font-normal text-[#111111]">
-              {stats.borrowed || 3}
+              {books.length > 0
+                ? stats.borrowed
+                : SEED_BOOKS.filter((b) => b.status === 'borrowed').length}
             </p>
             <span className="mt-2 text-xs text-neutral-500">
               Okuyucularda bulunan eserler
@@ -637,7 +725,7 @@ export function LibraryPage() {
         )}
       </Modal>
 
-      {/* Delete Confirmation Dialog (FR-04) */}
+      {/* Delete Confirmation Dialog */}
       <ConfirmDialog
         isOpen={Boolean(deletingBook)}
         title="Kitabı Kütüphaneden Sil"

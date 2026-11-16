@@ -3,35 +3,58 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router';
 import { EditorialBookCover } from '../components/books/EditorialBookCover';
 import { AppLayout } from '../components/layout/AppLayout';
+import { SEED_BOOKS } from '../data/seedBooks';
 import { useBooks } from '../hooks/useBooks';
 
 export function CollectionsPage() {
   const { books } = useBooks();
+  const catalog = books.length > 0 ? books : SEED_BOOKS;
+
+  const pickByCategories = (cats: string[], count = 5) =>
+    catalog
+      .filter((b) => cats.includes(b.category.toLowerCase()))
+      .slice(0, count);
 
   const collections = [
     {
-      id: 'dusunce-ve-felsefe',
+      id: 'turk-dunya-roman',
       tag: 'SEÇKİ 01',
-      title: 'Modern İnsanın Anlam Arayışı',
+      title: 'Türk ve Dünya Edebiyatından Romanlar',
       description:
-        'Psikoloji, felsefe ve varoluş üzerine zihin açıcı temel eserlerden oluşan küratöryel seçki.',
-      items: books.slice(0, 4),
+        'Anadolu’dan İstanbul’a, Kabil’den Petersburg’a uzanan ölümsüz karakterler ve güçlü anlatılar.',
+      items: pickByCategories(['roman'], 5),
     },
     {
-      id: 'cagdas-edebiyat',
+      id: 'klasikler-kanon',
       tag: 'SEÇKİ 02',
-      title: 'Çağdaş Dünya Edebiyatı & Roman',
+      title: 'Zamansız Klasikler ve Başyapıtlar',
       description:
-        'Farklı coğrafyalardan güçlü anlatılar, unutulmaz karakterler ve modern klasikler.',
-      items: books.slice(4, 8),
+        'Her dönemde yeniden okunan evrensel edebiyat klasikleri ve derin insan portreleri.',
+      items: pickByCategories(['klasik'], 5),
     },
     {
-      id: 'tarih-ve-kultur',
+      id: 'felsefe-psikoloji',
       tag: 'SEÇKİ 03',
-      title: 'Kültür, Dil ve Tarih Okumaları',
+      title: 'Modern İnsanın Anlam ve Bilinç Arayışı',
       description:
-        'Toplumların hafızasını, dilin evrimini ve tarihin kırılma noktalarını inceleyen başucu kitapları.',
-      items: books.slice(7, 11),
+        'Felsefe, varoluş, bilişsel psikoloji ve içsel denge üzerine zihin açıcı temel eserler.',
+      items: pickByCategories(['felsefe', 'psikoloji'], 5),
+    },
+    {
+      id: 'bilim-evren',
+      tag: 'SEÇKİ 04',
+      title: 'Bilim, Kozmos ve Gelecek Tasarımı',
+      description:
+        'Kara deliklerden evrenin doğasına ve bilimkurgunun öngörülerine uzanan keşif yolculuğu.',
+      items: pickByCategories(['bilim'], 5),
+    },
+    {
+      id: 'tarih-yazilim-yasam',
+      tag: 'SEÇKİ 05',
+      title: 'Tarih, Dilbilim ve Yazılım Zanaatkârlığı',
+      description:
+        'İnsanlık tarihinden mühendislik ilkelerine kadar disiplinler arası entelektüel bir seçki.',
+      items: pickByCategories(['tarih', 'yazılım', 'dilbilim', 'yaşam'], 5),
     },
   ];
 
@@ -51,8 +74,8 @@ export function CollectionsPage() {
             Özel Koleksiyonlar
           </h1>
           <p className="mt-3 max-w-xl text-xs leading-relaxed text-neutral-500">
-            Tematik okuma listeleri ve BookNest editörlerinin bir araya getirdiği
-            özel kitap koleksiyonları.
+            Tematik okuma listeleri ve BookNest editörlerinin {catalog.length}{' '}
+            eser arasından derlediği özel kitap koleksiyonları.
           </p>
         </motion.div>
 
@@ -65,16 +88,16 @@ export function CollectionsPage() {
               viewport={{ once: true }}
               transition={{
                 duration: 0.7,
-                delay: idx * 0.1,
+                delay: (idx % 3) * 0.08,
                 ease: [0.16, 1, 0.3, 1],
               }}
               className="grid grid-cols-1 gap-10 border-b border-neutral-200 pb-14 lg:grid-cols-12 lg:items-center"
             >
-              <div className="lg:col-span-5">
+              <div className="lg:col-span-4">
                 <span className="inline-block rounded-full border border-[#111111] px-3 py-0.5 text-[10px] font-medium">
                   {col.tag}
                 </span>
-                <h2 className="font-editorial mt-4 text-4xl font-normal leading-tight text-[#111111]">
+                <h2 className="font-editorial mt-4 text-3xl font-normal leading-tight text-[#111111] sm:text-4xl">
                   {col.title}
                 </h2>
                 <p className="mt-3 text-xs leading-relaxed text-neutral-500">
@@ -89,12 +112,12 @@ export function CollectionsPage() {
                 </Link>
               </div>
 
-              <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 lg:col-span-7">
+              <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-5 lg:col-span-8">
                 {col.items.map((book, bIdx) => (
                   <Link
                     key={book.id}
                     to={`/books/${book.id}`}
-                    className="group flex flex-col items-center p-2 transition-transform duration-300 hover:-translate-y-2"
+                    className="group flex flex-col items-center p-1 transition-transform duration-300 hover:-translate-y-2"
                   >
                     <motion.div
                       initial={{ opacity: 0, rotateY: -90 }}
@@ -102,7 +125,7 @@ export function CollectionsPage() {
                       viewport={{ once: true }}
                       transition={{
                         duration: 0.75,
-                        delay: bIdx * 0.08,
+                        delay: bIdx * 0.07,
                         ease: [0.16, 1, 0.3, 1],
                       }}
                       className="book-3d-wrapper my-2"

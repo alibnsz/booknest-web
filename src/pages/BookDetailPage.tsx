@@ -67,7 +67,10 @@ export function BookDetailPage() {
     (offset) => catalog[(currentIndex + offset) % catalog.length],
   );
 
-  const relatedBooks = catalog.filter((b) => b.id !== book.id).slice(0, 5);
+  const relatedBooks = [
+    ...catalog.filter((b) => b.id !== book.id && b.category === book.category),
+    ...catalog.filter((b) => b.id !== book.id && b.category !== book.category),
+  ].slice(0, 5);
 
   const handleUpdate = async (input: BookInput) => {
     await updateBook(book.id, input);
