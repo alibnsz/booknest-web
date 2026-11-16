@@ -1,8 +1,8 @@
 import type { BookFilters, SpinePattern } from '../interfaces/book';
 
 export const STORAGE_KEYS = {
-  BOOKS: 'booknest:v3:books',
-  THEME: 'booknest:v3:theme',
+  BOOKS: 'booknest:v4:books',
+  THEME: 'booknest:v4:theme',
 } as const;
 
 export const DEFAULT_FILTERS: BookFilters = {
