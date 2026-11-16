@@ -1,53 +1,23 @@
-# 📚 BookNest Web
+# BookNest Web
 
-**BookNest Web** is a modern, responsive Single Page Application (SPA) designed as a digital library and editorial book catalog. Built with **React 19**, **TypeScript (strict)**, **Tailwind CSS**, and **Framer Motion**, all library data is persisted safely in **LocalStorage** behind a clean `BookRepository` abstraction.
+A modern, minimalist digital library and catalog management Single Page Application (SPA) built with **React 19**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**. Data persistence is abstracted behind an asynchronous `BookRepository` interface backed by browser `LocalStorage`, making backend API integration swap-ready.
 
----
+## Features
 
-## ✨ Key Features
+- **Editorial 3D Showcase & Cover Engine:** Interactive 3D floating hero showcase and a 50-book initial catalog featuring a procedural cover generator (10 editorial layouts, 24 SVG motifs) plus custom image support.
+- **Full CRUD & Lending Workflow:** Create, edit, lend, return, and delete books with inline field validation, borrower tracking rules, confirmation dialogs, and toast feedback.
+- **Slide-Over Archive & Live Search:** Persistent quick-search drawer with real-time filtering by title, author, category, lending status, sorting, and JSON import/export backup.
+- **Open Library Integration:** Optional catalog auto-fill in the book form using the public Open Library Search API.
+- **Multi-View Navigation:** Dedicated views for Genres, Authors, Popular rankings, Collections, About/Stats, Book Details (`/books/:id`), and SPA fallback routing.
 
-- **Editorial Bookstore & 3D Book Showcase:**
-  - Interactive 3D floating hero books with smooth entrance and mouse-parallax physics.
-  - Curated showcase sections (*Yeni Çıkanlar*, *Kültür, Felsefe ve Klasikler*) and dedicated pages for **Türler** (`/turler`), **Yazarlar** (`/yazarlar`), **Popüler** (`/populer`), **Koleksiyonlar** (`/koleksiyonlar`), and **Hakkımızda** (`/hakkimizda`).
-- **Sliding Archive & Search Drawer:**
-  - Clicking the bottom-right **Arşiv & Arama** button opens a slide-over drawer with live search, status/genre filters, sorting options, and JSON backup tools.
-- **Book Detail View (`/books/:id`):**
-  - 3D book cover preview, quick-switch edition thumbnails, connected **Kitap Özeti** & **Notlar & Ödünç** tabs, reading session metrics, and previous/next book navigation.
-- **Full CRUD & Lending Workflow:**
-  - **Create:** Add books manually or use **Open Library API** auto-fill to fetch book covers, authors, publication years, and summaries.
-  - **Read:** Browse across category views, search in real time, or inspect individual book details.
-  - **Update & Lending:** Edit book details, lend books to readers with borrower tracking, and mark borrowed books as returned.
-  - **Delete:** Safe deletion guarded by an accessible confirmation dialog.
-- **Backup & Restore:**
-  - Export and import the entire library catalog as a `.json` file.
+## Tech Stack
 
----
+- **Core:** React 19, TypeScript (strict), React Router v7, Vite 6
+- **UI & Motion:** Tailwind CSS v4, Framer Motion, Lucide React
+- **State & Persistence:** React Context + `useReducer`, Repository Pattern (`LocalStorage`)
+- **Testing & Quality:** Vitest, Testing Library, JSDOM, ESLint, Prettier
 
-## 🛠️ Technology Stack
-
-| Layer | Technology |
-|---|---|
-| **UI Library** | React 19 (Functional Components & Hooks) |
-| **Language** | TypeScript 5.7 (`strict` mode) |
-| **Build Tool** | Vite 6 |
-| **Styling** | Tailwind CSS v4 |
-| **Animations** | Framer Motion |
-| **Routing** | React Router v7 |
-| **Icons** | `lucide-react` |
-| **Persistence** | Browser `LocalStorage` via `BookRepository` |
-| **External Book Lookup** | Open Library Search API |
-| **Testing** | Vitest + JSDOM |
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- **Node.js** `>= 20.x`
-- **npm** `>= 10.x`
-
-### Installation
+## Getting Started
 
 ```bash
 git clone https://github.com/alibnsz/booknest-web.git
@@ -56,60 +26,39 @@ npm install
 npm run dev
 ```
 
----
+### Scripts
 
-## 📜 Available Scripts
-
-| Script | Description |
+| Command | Purpose |
 |---|---|
-| `npm run dev` | Start the Vite development server with HMR |
-| `npm run build` | Type-check (`tsc -b`) and build production bundle into `dist/` |
-| `npm run preview` | Locally preview the production build |
-| `npm run lint` | Run ESLint across all TypeScript files |
+| `npm run dev` | Start the Vite development server |
+| `npm run build` | Type-check and build production bundle to `dist/` |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint` | Run ESLint checks |
+| `npm run test` | Execute Vitest test suite |
 | `npm run format` | Format source files with Prettier |
-| `npm run test` | Run automated unit & repository tests via Vitest |
 
----
+## Architecture
 
-## 🏗️ Project Structure
-
-```
-booknest-web/
-├── public/
-│   ├── _redirects                    # Netlify SPA routing fallback
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   ├── ui/                       # Reusable UI primitives (Button, Input, Modal, Toast...)
-│   │   ├── layout/                   # AppLayout, Header, Footer, ArchiveDrawer
-│   │   └── books/                    # BookCard, BookList, BookForm, BorrowForm, StatsCards...
-│   ├── pages/
-│   │   ├── LibraryPage.tsx           # Main editorial showcase & hero
-│   │   ├── GenresPage.tsx            # Category filtering view
-│   │   ├── AuthorsPage.tsx           # Alphabetical authors index
-│   │   ├── PopularPage.tsx           # Most read books ranking
-│   │   ├── CollectionsPage.tsx       # Curated reading collections
-│   │   ├── AboutPage.tsx             # Architecture & live library stats
-│   │   ├── BookDetailPage.tsx        # Book showcase, tabs, and lending actions
-│   │   └── NotFoundPage.tsx          # Friendly 404 screen
-│   ├── interfaces/
-│   │   ├── book.ts                   # Book, BookInput, BookFilters types
-│   │   └── repository.ts             # Async BookRepository contract
-│   ├── services/
-│   │   ├── localStorageBook.repository.ts
-│   │   ├── bookRepository.provider.ts
-│   │   └── openLibrary.service.ts    # Open Library API search helper
-│   ├── context/                      # BooksContext, booksReducer, ToastContext
-│   ├── hooks/                        # useBooks, useBookFilters, useTheme, useLocalStorage
-│   ├── utils/                        # validators, filterAndSort, formatters
-│   ├── constants/                    # Storage keys and default categories
-│   └── data/                         # Initial seed catalog
-└── tests/                            # Vitest unit & repository test suites
+```text
+src/
+├── components/
+│   ├── books/        # Domain UI: covers, cards, forms, lending modal, stats
+│   ├── layout/       # Persistent app shell, centered header, footer, archive drawer
+│   └── ui/           # Generic primitives: Button, Input, Select, Modal, Toast
+├── constants/        # Storage keys and category constants
+├── context/          # BooksContext, reducer state, and ToastContext
+├── data/             # Seed catalog (50 books) and unique cover design presets
+├── hooks/            # useBooks, useBookFilters, useLocalStorage, useTheme
+├── interfaces/       # Book domain types and BookRepository interface
+├── pages/            # Route-level containers (Library, Detail, Genres, Authors, Popular, Collections, About)
+├── services/         # LocalStorageBookRepository, provider, Open Library API client
+└── utils/            # Pure validation, filtering, sorting, and formatting helpers
 ```
 
----
+All UI components consume domain state exclusively through `useBooks()` and `BookRepository` (`src/interfaces/repository.ts`), enabling straightforward replacement of `LocalStorageBookRepository` with an HTTP implementation in `src/services/bookRepository.provider.ts`.
 
-## 👤 Author & License
+## Deployment & License
 
+- **Deployment:** Ready for static hosting on Netlify (`netlify.toml` and `public/_redirects` included for client-side routing).
 - **Author:** Mehmet Ali Bunsuz ([@alibnsz](https://github.com/alibnsz))
 - **License:** MIT
